@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ostermann.sapinoscope"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:name=".Sapinoscope"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_sapin"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Parcelle_activity"
+            android:label="@string/title_activity_parcelle"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Secteur_activity"
+            android:label="@string/title_activity_secteur_activity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Message_alerte_activity"
+            android:label="@string/title_activity_message_alerte"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Ajout_sapin"
+            android:label="@string/title_activity_ajout_sapin"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Parcelle_listView"
+            android:label="@string/title_activity_parcelle_list_view"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Parcelle_modification"
+            android:label="@string/title_activity_parcelle_modification"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Secteur_modification"
+            android:label="@string/title_activity_secteur_modification"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Ajout_sapin3"
+            android:label="@string/title_activity_ajout_sapin3"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Varietes_Listview"
+            android:label="@string/title_activity_varietes__listview"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Choix_depart_sapin"
+            android:label="@string/title_activity_choix_depart_sapin"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Graham_graphe"
+            android:label="@string/title_activity_graham_graphe" >
+        </activity>
+    </application>
+
+</manifest>

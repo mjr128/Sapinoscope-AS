@@ -1,0 +1,111 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.ostermann.sapinoscope.Secteur_modification" >
+
+    <TextView
+        android:id="@+id/txt_secteur_modif_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/editText_secteur_modif_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txt_addsap_secteur_titre"
+        android:ems="10"
+        android:hint="Nom secteur" />
+
+    <TextView
+        android:id="@+id/txt_addsap_secteur_titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_secteur_modif_nom"
+        android:layout_below="@+id/txt_secteur_modif_title"
+        android:layout_marginTop="30dp"
+        android:text="Nom" />
+
+    <TextView
+        android:id="@+id/textView_secteur_coef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_secteur_modif_nom"
+        android:layout_below="@+id/editText_secteur_modif_nom"
+        android:layout_marginTop="27dp"
+        android:text="Coefficient de croissance" />
+
+    <Spinner
+        android:id="@+id/spinner_coef_croissance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView_secteur_coef" />
+
+    <Button
+        android:id="@+id/bt_secteur_modif_add"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:minHeight="70dip"
+        android:text="Valider"
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/spinner_coef_gel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txt_addsap_parcelle_titre"
+        android:layout_toRightOf="@+id/textView_secteur_coef" />
+
+    <Spinner
+        android:id="@+id/spinner_annee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/textView_secteur_coef"
+        android:layout_alignTop="@+id/spinner_coef_gel" />
+
+    <TextView
+        android:id="@+id/txt_addsap_parcelle_titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spinner_annee"
+        android:layout_below="@+id/spinner_coef_croissance"
+        android:layout_marginTop="29dp"
+        android:text="Année / Gel(%)" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txt_addsap_parcelle_titre"
+        android:layout_toRightOf="@+id/spinner_annee"
+        android:text="Gel(%)" />
+
+    <CheckBox
+        android:id="@+id/chek_secteur_modification_zigzag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spinner_annee"
+        android:layout_below="@+id/spinner_annee"
+        android:layout_marginTop="7dp"
+        android:checked="true"
+        android:text="Déplacement ZigZag" />
+
+</RelativeLayout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sapinoscope</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="capture">Capture de Sapin</string>
+    <string name="analyse">Analyse</string>
+    <string name="synchronisation">Synchronisation</string>
+    <string name="title_activity_parcelle">ParcelleActivity</string>
+    <string name="parcelle">Parcelle :</string>
+    <string name="choix">Choix :</string>
+    <string name="newParcelle">Nouvelle Parcelle :</string>
+    <string name="ok">Ok</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="title_activity_secteur_activity">Secteur</string>
+    <string name="title_activity_message_alerte">Placement</string>
+    <string name="secteur">Secteur : </string>
+    <string name="message_alerte_info">Placez vous au début du secteur.</string>
+    <string name="title_activity_ajout_sapin">Sapin</string>
+    <string name="title_activity_parcelle_list_view">Parcelle</string>
+    <string name="Parcelle">parcelle_titre</string>
+    <string name="title_activity_parcelle_modification">Parcelle</string>
+    <string name="title_activity_secteur_modification">Secteur</string>
+    <string name="title_activity_ajout_sapin3">Ajout_sapin3</string>
+
+    <string-array name="taille_predefini">
+        <item>0,4m</item>
+        <item>0,5m</item>
+        <item>0,6m</item>
+        <item>0,7m</item>
+        <item>0,8m</item>
+        <item>0,9m</item>
+        <item>1m</item>
+        <item>1,1m</item>
+        <item>1,2m</item>
+        <item>1,3m</item>
+        <item>1,2m</item>
+        <item>1,3m</item>
+        <item>1,4m</item>
+        <item>1,5m</item>
+        <item>2m</item>
+        <item>2,2m</item>
+        <item>2,5m</item>
+        <item>3m</item>
+        <item>3,5m</item>
+        <item>4m</item>
+        <item>4,5m</item>
+        <item>5m</item>
+        <item>5,5m</item>
+        <item>6m</item>
+        <item>6,5m</item>
+        <item>7m</item>
+        <item>8m</item>
+        <item>9m</item>
+        <item>10m</item>
+        <item>11m</item>
+        <item>12m</item>
+        <item>13m</item>
+        <item>14m</item>
+        <item>15m</item>
+    </string-array>
+    <string-array name="nbIdentiques">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+    </string-array>
+
+    <string name="title_activity_varietes__listview">Modification des varietes</string>
+
+    <string-array name="Pousse_variete">
+        <item>1.5</item>
+        <item>1.4</item>
+        <item>1.3</item>
+        <item>1.2</item>
+        <item>1.1</item>
+        <item>1.0</item>
+        <item>0.9</item>
+        <item>0.8</item>
+        <item>0.7</item>
+        <item>0.6</item>
+        <item>0.5</item>
+    </string-array>
+
+    <string name="title_activity_choix_depart_sapin">Choix du Sapin</string>
+    <string name="title_activity_graham_graphe">Graham_graphe</string>
+
+</resources>

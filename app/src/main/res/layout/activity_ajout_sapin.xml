@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@+id/tableRow6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" >
+
+        <TextView
+            android:id="@+id/txt_addsap_parcelle_titre"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txt_addsapin_getX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="50dp"
+            android:text="Sapin N° 0" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/txt_addsap_secteur_titre"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="SecteurName"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txt_addsapin_getY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Ligne : 1" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView4"
+            android:text="Taille" />
+
+        <Spinner android:id="@+id/spin_addsap_taille" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:text="Variété" />
+
+        <Spinner
+            android:id="@+id/spin_addsap_variete"
+            android:layout_marginTop="14dp" />
+    </TableRow>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical" />
+
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" >
+
+        <TextView
+            android:id="@+id/textView5"
+            android:text="Nb Identiques" />
+
+        <Spinner android:id="@+id/spin_addsap_sap_identique" />
+    </TableRow>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="15dp" />
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/bt_addsap_sapin_existant"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_marginTop="20dp"
+            android:minHeight="90dp"
+            android:text="Sapin Existant"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/bt_addsap_nouveau_sapin"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_gravity="center"
+            android:minHeight="50dp"
+            android:text="Nouveau plant" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/bt_addsap_souche"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="Souche" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/bt_addsap_nouvelle_ligne"
+            android:layout_weight="1"
+            android:text="Nouvelle Ligne" />
+
+    </TableRow>
+
+</TableLayout>

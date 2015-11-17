@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.ostermann.sapinoscope.Varietes_Listview" >
+
+    <ListView
+        android:id="@+id/listview_varietes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_variete_nouveau"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/spinner_pousse"
+        android:layout_alignLeft="@+id/spinner_pousse"
+        android:text="Coefficient de pousse" />
+
+    <Spinner
+        android:id="@+id/spinner_pousse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/txt_variete_nom" />
+
+    <EditText
+        android:id="@+id/txt_variete_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TextView01"
+        android:layout_alignLeft="@+id/listview_varietes"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txt_variete_nom"
+        android:layout_alignLeft="@+id/txt_variete_nom"
+        android:text="Nom de la variété" />
+
+    <Button
+        android:id="@+id/button_modif_variete"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView1"
+        android:layout_toRightOf="@+id/spinner_pousse"
+        android:text="Modif. Infos" />
+
+    <Button
+        android:id="@+id/btn_variete_nouveau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/listview_varietes"
+        android:text="Ajouter une nouvelle variété" />
+
+</RelativeLayout>
