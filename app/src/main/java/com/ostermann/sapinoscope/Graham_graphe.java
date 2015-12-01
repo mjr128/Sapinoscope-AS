@@ -1,6 +1,5 @@
 package com.ostermann.sapinoscope;
 
-import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
@@ -14,12 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
-import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewTreeObserver.OnDrawListener;
-import android.widget.Button;
 
 public class Graham_graphe extends Activity implements SurfaceHolder.Callback {
 
@@ -49,7 +43,7 @@ public class Graham_graphe extends Activity implements SurfaceHolder.Callback {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.ajout_sapin, menu);
+		getMenuInflater().inflate(R.menu.settings_menu, menu);
 		return true;
 	}
 
