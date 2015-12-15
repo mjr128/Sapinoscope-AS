@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/AppTheme">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SurfaceView
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:id="@+id/surfaceView"
+            android:layout_gravity="center_horizontal"
+            android:elevation="5dp" />
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/tableLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            style="@style/AppTheme">
+
+            <TableRow
+                android:id="@+id/tableRow12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:text="Taille"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    style="@style/AppTheme" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spin_addsap_taille"
+                    android:layout_column="1"
+                    android:theme="@style/AppTheme" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal" >
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:text="Nb Identiques"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    style="@style/AppTheme" />
+
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spin_addsap_sap_identique"
+                    android:layout_column="1"
+                    style="@style/AppTheme"
+                    android:layout_span="0" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal" >
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:text="Variété"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:id="@+id/spin_addsap_variete"
+                    android:layout_marginTop="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_span="2"
+                    android:weightSum="1">
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:id="@+id/button"
+                        android:layout_marginTop="20dp"
+                        android:minHeight="90dp"
+                        android:text="Sapin Existant"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="111dp"
+                        android:layout_weight="0.07" />
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:id="@+id/button2"
+                        android:minHeight="50dp"
+                        android:text="Nouveau plant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.28" />
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="Souche" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_weight="1"
+                    android:text="Nouvelle Ligne"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/txt_addsapin_getX" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/txt_addsapin_getY" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/txt_addsap_secteur_titre" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/txt_addsap_parcelle_titre" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button5" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button6" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button7" />
+    </LinearLayout>
+</LinearLayout>
