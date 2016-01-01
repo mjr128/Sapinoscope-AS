@@ -16,12 +16,34 @@
             android:layout_gravity="center_horizontal"
             android:elevation="5dp" />
 
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/tableLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            style="@style/AppTheme">
+        <TableRow
+            android:id="@+id/tableRow14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal" >
+
+            <TextView
+                android:id="@+id/textView13"
+                android:text="Nb Identiques"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                style="@style/AppTheme" />
+
+            <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spin_addsap_sap_identique"
+                android:layout_column="1"
+                style="@style/AppTheme"
+                android:layout_span="0" />
+
+        </TableRow>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView" >
 
             <TableRow
                 android:id="@+id/tableRow12"
@@ -44,30 +66,14 @@
                     android:theme="@style/AppTheme" />
 
             </TableRow>
+        </ScrollView>
 
-            <TableRow
-                android:id="@+id/tableRow14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_horizontal" >
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:text="Nb Identiques"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    style="@style/AppTheme" />
-
-                <NumberPicker
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/spin_addsap_sap_identique"
-                    android:layout_column="1"
-                    style="@style/AppTheme"
-                    android:layout_span="0" />
-
-            </TableRow>
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/tableLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            style="@style/AppTheme">
 
             <TableRow
                 android:id="@+id/tableRow13"
