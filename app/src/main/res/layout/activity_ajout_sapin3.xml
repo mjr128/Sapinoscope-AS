@@ -3,135 +3,7 @@
     android:id="@+id/TableLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    style="@style/AppTheme">
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tableLayout2"
-        android:layout_toRightOf="@+id/space"
-        android:layout_toEndOf="@+id/space">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <SurfaceView
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                android:id="@+id/surfaceView2"
-                android:layout_column="0"
-                android:layout_span="3" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/AppTheme">
-
-            <TextView
-                android:id="@+id/txt_addsap_parcelle_titre"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_span="0"
-                android:layout_column="0" />
-
-            <TextView
-                android:id="@+id/txt_addsapin_getX"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginLeft="50dp"
-                android:text="Sapin N° 0"
-                android:layout_column="1"
-                android:layout_span="0" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/txt_addsap_secteur_titre"
-                android:layout_width="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:text="SecteurName"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_span="0"
-                android:layout_column="0" />
-
-            <TextView
-                android:id="@+id/txt_addsapin_getY"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ligne : 1"
-                android:layout_gravity="right"
-                android:layout_column="1"
-                android:layout_span="0" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView4"
-                android:text="Taille" />
-
-            <Spinner android:id="@+id/spin_addsap_taille"
-                android:layout_span="2" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal" >
-
-            <TextView
-                android:id="@+id/textView3"
-                android:text="Variété" />
-
-            <Spinner
-                android:id="@+id/spin_addsap_variete"
-                android:layout_marginTop="14dp"
-                android:layout_span="2" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal" >
-
-            <TextView
-                android:id="@+id/textView5"
-                android:text="Nb Identiques"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Spinner android:id="@+id/spin_addsap_sap_identique"
-                android:layout_span="2" />
-        </TableRow>
-    </TableLayout>
-
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="1022dp"
-        android:id="@+id/space" />
+    android:orientation="vertical">
 
     <LinearLayout
         android:orientation="vertical"
@@ -140,7 +12,8 @@
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -152,19 +25,19 @@
                 android:id="@+id/bt_addsap_sapin_existant"
                 style="@style/AppTheme"
                 android:text="Sapin Existant"
-                android:textSize="20sp"
                 android:layout_column="0"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3" />
 
             <Button
                 android:id="@+id/bt_addsap_nouveau_sapin"
                 style="@style/AppTheme"
-                android:minHeight="50dp"
                 android:text="Nouveau plant"
                 android:layout_column="1"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content" />
+                android:layout_width="wrap_content"
+                android:layout_weight="0.3" />
 
             <Button
                 android:id="@+id/bt_addsap_souche"
@@ -173,7 +46,9 @@
                 android:padding="3dp"
                 android:text="Souche"
                 android:layout_column="2"
-                style="@style/AppTheme" />
+                style="@style/AppTheme"
+                android:layout_weight="0.3"
+                android:longClickable="false" />
         </LinearLayout>
 
         <Button
@@ -186,5 +61,131 @@
             android:layout_gravity="bottom" />
 
     </LinearLayout>
+
+    <ImageButton
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:id="@+id/imageButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:adjustViewBounds="false"
+        android:clickable="true"
+        android:baselineAlignBottom="false"
+        android:src="@android:drawable/ic_menu_camera" />
+
+    <TextView
+        android:id="@+id/txt_addsap_parcelle_titre"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_span="0"
+        android:layout_column="0"
+        android:elevation="1dp"
+        android:translationZ="5dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/txt_addsapin_getX"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/txt_addsapin_getX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sapin N° 0"
+        android:layout_column="1"
+        android:layout_span="0"
+        android:layout_gravity="right"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp" />
+
+    <TextView
+        android:id="@+id/txt_addsapin_getY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ligne : 1"
+        android:layout_column="1"
+        android:layout_span="0"
+        android:layout_gravity="right"
+        android:layout_below="@+id/txt_addsapin_getX"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp" />
+
+    <TextView
+        android:id="@+id/txt_addsap_secteur_titre"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:text="SecteurName"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_span="0"
+        android:layout_column="0"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_addsap_parcelle_titre"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="5dp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:text="Nb Identiques"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0" />
+
+        <Spinner android:id="@+id/spin_addsap_sap_identique"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:text="Taille"
+            android:layout_column="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1" />
+
+        <Spinner android:id="@+id/spin_addsap_taille"
+            android:layout_column="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="1" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:text="Variété"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/spin_addsap_variete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="1" />
+    </GridLayout>
 
 </RelativeLayout>

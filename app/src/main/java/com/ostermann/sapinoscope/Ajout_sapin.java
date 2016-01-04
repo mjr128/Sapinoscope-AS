@@ -19,6 +19,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,7 +65,7 @@ public class Ajout_sapin extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_ajout_sapin);
+		setContentView(R.layout.activity_ajout_sapin3);
 		
 		Log.i("ajoutSapinAct","Initialisation de l'ajout de sapin...");
 		
@@ -596,7 +598,7 @@ public class Ajout_sapin extends Activity {
         setTextView_NbSapin_ligne(nbSapinLigne);
     	positionY = y;
    	 	TextView txtView_getY = (TextView) findViewById(R.id.txt_addsapin_getY);
-   	 	txtView_getY.setText("Ligne :"+(y+1));
+   	 	txtView_getY.setText("Ligne :" + (y + 1));
     }
     
     private void fillGui()
@@ -724,6 +726,40 @@ public class Ajout_sapin extends Activity {
    	 txtView_getX.setText("Sapin N° :"+x);
 
     }
+
+	private void drawSecteurSapin(Object_secteur secteur, Canvas c)
+	{
+		Vector<Object_sapin> allSapins = Object_sapin.createListOfSapin(secteur.getId());
+
+		float sectorAngle = secteur.getAngle(); // angle de 0 = vertical
+
+		for(Object_sapin sapin : allSapins)
+		{
+			Object_infoSapin infoSapin = Object_infoSapin.getLastInfoSapin(sapin.getSapId());
+
+			Drawable iconSapin;
+
+			switch (infoSapin.status)
+			{
+				case NOUVEAU:
+					iconSapin = getDrawable(R.drawable.emp_sap_ok);
+					break;
+				case OK:
+					iconSapin = getDrawable(R.drawable.emp_sap_ok);
+					break;
+				case TOC:
+					iconSapin = getDrawable(R.drawable.emp_sap_souche);
+					break;
+				case VIDE:
+					iconSapin = getDrawable(R.drawable.emp_sap_vide);
+					break;
+				case INDEFINI:
+				default:
+					iconSapin = getDrawable(R.drawable.emp_sap_error);
+					break;
+			}
+		}
+	}
     
     // Renvoi true si le sapin evolution pourrait etre la source apres quelque temps, utilise toutes les infos disponible, sauf l'id 
     private boolean estUneEvolutionProbable(Etat_sapin source, Etat_sapin evolution)
@@ -739,7 +775,7 @@ public class Ajout_sapin extends Activity {
     		if(evolution.infoSapin.status == Status_sapin.OK || evolution.infoSapin.status == Status_sapin.TOC)
     		{
     			long msEntreDeuxMesures = evolution.infoSapin.date.getTime() - source.infoSapin.date.getTime();
-    			if(msEntreDeuxMesures < 0)// evolution doit etre apres la source
+    			if(msEntreDeuxMesures < 0)// evolution doit etre postérieure à la source
     				return false;
     			
     			double jourEntreDeuxMesures = msEntreDeuxMesures/86400000.0f;// 86400000.0f = nb de ms dans une journ�e
@@ -754,7 +790,7 @@ public class Ajout_sapin extends Activity {
     			// La taille doit etre stocke en cm pour que les calculs marche
     			double elevationMoyenneEntreDeuxMesuresParMParJour = elevationEntreDeuxMesures / jourEntreDeuxMesures;  
     			
-    			// Etimation de Vincent : un sapin prend un maximum de 60cm/an :
+    			// Etimation : un sapin prend un maximum de 60cm/an :
     			double elevationMaxParMParAn = 60.0f/100;// 60.0f == 60.0 le f est la pour limiter les erreurs de calcul sur les flotants. google pour plus d'info
     			double elevationMaxParMParJour = elevationMaxParMParAn / 365.0f ;
     			

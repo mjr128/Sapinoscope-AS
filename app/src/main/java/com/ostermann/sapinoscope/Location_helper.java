@@ -43,12 +43,12 @@ public class Location_helper {
 		{
 			public void onLocationChanged(Location location) 
 			{
-				Log.i("Location", "Nouveau point trouvé!");
+				Log.i("Location", "Nouveau point trouve !");
 				// Called when a new location is found by the network location provider.
 				if ( isBetterLocation(location, currentBestLocation) )
 				{
 					currentBestLocation = location;
-					Log.i("Location", "Nouveau point trouvé et validé!");
+					Log.i("Location", "Nouveau point trouve et valide!");
 				}
 			}
 

@@ -144,4 +144,22 @@ public class Object_infoSapin {
 			sap_id = c.getInt(0);
     	}
 	}
+
+	public static Object_infoSapin getLastInfoSapin(int sapin_ID)
+	{
+		String requetteSelect = "SELECT * FROM INFO_SAPIN WHERE SAP_ID="+sapin_ID+" ORDER BY DESC INF_SAP_DATE";
+
+		SQLiteDatabase db = Sapinoscope.getDataBaseHelper().getReadableDatabase();
+		Cursor c = db.rawQuery(requetteSelect, null);
+
+		if(c.getCount() == 0) {
+			Log.e("Object_infoSapin", "Aucune info sapin pour le sapin id : " + sapin_ID);
+			return null;
+		}
+
+		c.moveToFirst();
+		Object_infoSapin infoSapin = new Object_infoSapin(c);
+
+		return infoSapin;
+	}
 }
