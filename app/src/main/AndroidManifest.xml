@@ -22,17 +22,9 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity
-            android:name=".Parcelle_activity"
-            android:label="@string/title_activity_parcelle"
-            android:screenOrientation="portrait" >
-        </activity>
+
         <activity
             android:name=".Secteur_activity"
             android:label="@string/title_activity_secteur_activity"
@@ -52,6 +44,11 @@
             android:name=".Parcelle_listView"
             android:label="@string/title_activity_parcelle_list_view"
             android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Parcelle_modification"

@@ -10,7 +10,7 @@ import java.util.Random;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+// coucou
 import com.ostermann.sapinoscope.Object_sapin.Status_sapin;
 
 import android.app.Activity;
@@ -315,6 +315,7 @@ public class Ajout_sapin extends Activity {
 	protected void onResume()
 	{
 		super.onResume();
+		fillGui(); // On remet a jour l'interface graphique car cette fonction va etre appellé apres la modification de la liste des variétes
 		Sapinoscope.getLocationHelper().startRecherche();
 	}
 	
@@ -326,11 +327,32 @@ public class Ajout_sapin extends Activity {
 	
 	protected void onDestroy()
 	{
-		super.onStart();
+		super.onDestroy();
 		Sapinoscope.getLocationHelper().stopRecherche();
 		setPositionsSecteur();
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.settings_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			Intent intent = new Intent(this, Varietes_Listview.class);
+			startActivity(intent);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
 	private void tryDrawing(SurfaceHolder holder) {
         Log.i("Draw", "Trying to draw...");
 

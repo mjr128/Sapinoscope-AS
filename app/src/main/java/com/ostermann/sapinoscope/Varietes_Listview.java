@@ -273,18 +273,15 @@ public class Varietes_Listview extends Activity {
 	
 	//**************************************************************************//
 	// Gestion du clic dans la listview
-	private void variete_ClickCallBack(ListView liste_variete) 
-	{	
-		liste_variete.setOnItemClickListener(new AdapterView.OnItemClickListener() 
-		{
-			public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) 
-			{
+	private void variete_ClickCallBack(ListView liste_variete) {
+		liste_variete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
 				id_variete_selectionnee = tab_variete.get(position).getVar_id();
-		
+
 				//On affiche les infos dans les zone en bas de page
 				edittext_nom_var.setText(tab_variete.get(position).getVar_nom());
 				Select_spinner_pousse(tab_variete.get(position).getVar_coef());
-				
+
 				//On desactive certain boutons
 				Button btn_modif_infos = (Button) findViewById(R.id.button_modif_variete);
 				Button btn_ajouter_variete = (Button) findViewById(R.id.btn_variete_nouveau);
@@ -292,26 +289,5 @@ public class Varietes_Listview extends Activity {
 				btn_ajouter_variete.setEnabled(false);
 			}
 		});
-	}
-	
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.varietes__listview, menu);
-		return true;
-	}
-
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 }
