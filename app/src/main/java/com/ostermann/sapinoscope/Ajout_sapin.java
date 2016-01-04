@@ -1,7 +1,10 @@
 package com.ostermann.sapinoscope;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.Vector;
@@ -16,13 +19,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +43,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,7 +67,12 @@ public class Ajout_sapin extends Activity {
 	private Spinner varieteSpinner ;
 	private Spinner tailleSpinner ;
 	private Spinner nbIdentiqueSpinner ;
-		
+    private Button newPhotoBtn;
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private ImageView imageView;
+    private Bitmap imageBitmap;
 	
 	
 	@Override
@@ -74,7 +87,7 @@ public class Ajout_sapin extends Activity {
 		 varieteSpinner = (Spinner) findViewById(R.id.spin_addsap_variete);
 		 tailleSpinner = (Spinner) findViewById(R.id.spin_addsap_taille);
 		 nbIdentiqueSpinner = (Spinner) findViewById(R.id.spin_addsap_sap_identique);
-			
+         imageView = (ImageView) findViewById(R.id.mImageView);
 		
 		Intent intentAjoutSapin = getIntent();
 		int secteurID  = intentAjoutSapin.getIntExtra("sect_id", -1);
@@ -89,13 +102,13 @@ public class Ajout_sapin extends Activity {
 		
 		Etat_sapin etatsapin_actuel = null;
 		
-		int newSecteur = intentAjoutSapin.getIntExtra("new_secteur", -1);//TODO CHANGER CA POUR QUE CA MARCHE
+		int newSecteur = intentAjoutSapin.getIntExtra("new_secteur", -1);
 		
 		// Secteur Existant
 		if(newSecteur == 0)
 		{
-			int xDepart = intentAjoutSapin.getIntExtra("x", -1);//TODO CHANGER CA POUR QUE CA MARCHE
-			int yDepart = intentAjoutSapin.getIntExtra("y", -1);//TODO CHANGER CA POUR QUE CA MARCHE
+			int xDepart = intentAjoutSapin.getIntExtra("x", -1);
+			int yDepart = intentAjoutSapin.getIntExtra("y", -1);
 			
 			Log.i("ajoutSapinAct","Reprise de l'enregistrement a partir de x="+xDepart +" et y="+yDepart);
 			
@@ -191,7 +204,7 @@ public class Ajout_sapin extends Activity {
 			}
 		});
 		
-		Spinner tailleSpin 		= (Spinner) findViewById(R.id.spin_addsap_taille);
+		Spinner tailleSpin = (Spinner) findViewById(R.id.spin_addsap_taille);
 		tailleSpin.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -255,8 +268,39 @@ public class Ajout_sapin extends Activity {
 				goToNextPositionX();
 			}
 		});
+
+        newPhotoBtn = (Button) findViewById(R.id.btnPhoto);
+        newPhotoBtn.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View v) {
+                dispatchTakePictureIntent();
+            }
+        });
 	}
-	
+
+    //Fonction qui récupère la miniature
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            imageBitmap = (Bitmap) extras.get("data");
+
+            //imageView = (ImageView) findViewById(R.id.mImageView);
+            imageView.setImageBitmap(imageBitmap);
+            imageView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    //static final int REQUEST_TAKE_PHOTO = 1;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
 	protected void onPause()
 	{
 		super.onPause();
@@ -450,7 +494,7 @@ public class Ajout_sapin extends Activity {
     		return false;
     	}
     	else
-			Log.i("ajoutSapinAct","Sapins trouves pour ce secteur, debut a "+ positionX +","+positionY);
+			Log.i("ajoutSapinAct","Sapin trouve pour ce secteur, debut a "+ positionX +","+positionY);
     	
     	return true;
     }
@@ -463,7 +507,7 @@ public class Ajout_sapin extends Activity {
 	    	Object_sapin sapin = new Object_sapin();
 	    	sapin.sec_id = secteurActuel.getId();
 	    	sapin.var_id = varieteActuel.getVar_id();
-	    	if(zigZag && positionY%2 == 1)//Les colonnes impaires sont decremente, les colonnes paire sont incremente
+	    	if(zigZag && positionY%2 == 1)//Les colonnes impaires sont decremente, les colonnes paires sont incrementees
 	    		sapin.xLigne = positionX - i;
 	    	else
 	    		sapin.xLigne = positionX + i;
@@ -472,6 +516,7 @@ public class Ajout_sapin extends Activity {
 	    	// infoSapin qui contient les infos que l'utilisateur souhaite enregistrer
 	    	Object_infoSapin infoSapin = new Object_infoSapin(Calendar.getInstance().getTime());
 	    	infoSapin.status= status;
+            infoSapin.photo = imageBitmap;
 	    	switch (status)
 	    	{
 	    		case NOUVEAU:
@@ -516,7 +561,7 @@ public class Ajout_sapin extends Activity {
 	    	if (!informationsTrouve) 
 	    	{
 	    		// Il n'y a aucune information sur cet emplacement, ou
-	    		// Le sapin que l'utilisateur souhaite enregistre n'est pas le meme que celui qui est deja en place, 
+	    		// Le sapin que l'utilisateur souhaite enregistrer n'est pas le meme que celui qui est deja en place,
 	    		// on va donc enregistrer un nouveau sapin et son premier infoSapin dans la base. 
 	    		// Ainsi que sa position GPS
 	    		
@@ -539,6 +584,13 @@ public class Ajout_sapin extends Activity {
     	nbSapinLigne += nbIdentique;
     	Spinner nbIdentiqueSpinner = (Spinner) findViewById(R.id.spin_addsap_sap_identique);
     	nbIdentiqueSpinner.setSelection(0);
+
+        if (imageView != null)
+        {
+            imageView.setImageResource(0);
+            imageView.setImageDrawable(null);
+            imageView.setVisibility(View.INVISIBLE);
+        }
     }
     
     // Donne quel serait le point suivant a entrer : 
@@ -600,11 +652,11 @@ public class Ajout_sapin extends Activity {
    	 	TextView txtView_getY = (TextView) findViewById(R.id.txt_addsapin_getY);
    	 	txtView_getY.setText("Ligne :" + (y + 1));
     }
-    
+
+    //ici je dois récupérer et afficher ma photo dans imageView
     private void fillGui()
     {
     	textViewParcelle.setText("Parcelle : "+parcelleActuel.getName());
-    	
     	textViewSecteur.setText("Secteur : "+secteurActuel.getName());
     	
     	Vector<Object_variete> varietes = Object_variete.createListOfAllVariete();
@@ -618,8 +670,50 @@ public class Ajout_sapin extends Activity {
 		String[] nbIdentiques = getResources().getStringArray(R.array.nbIdentiques);
 		ArrayAdapter<String> nbIdentiquesAdapter = new ArrayAdapter<String>(this, R.layout.secteur_texte,nbIdentiques);
 		nbIdentiqueSpinner.setAdapter(nbIdentiquesAdapter);
-		
+
+        int idSapin = returnIdInfoSapin();
+        if (idSapin != -1)
+        {
+            try
+            {
+                Bitmap bmp = Object_infoSapin.getLastInfoSapin(idSapin).photo;
+                imageView.setImageBitmap(bmp);
+            }
+            catch(Exception ex)
+            {}
+
+        }
     }
+
+
+
+
+
+    // return l'id de l'infosapin
+    private int returnIdInfoSapin()
+    {
+        SQLiteDatabase db = Sapinoscope.getDataBaseHelper().getWritableDatabase();
+
+        String reqSelectID = "SELECT SAP_ID FROM SAPIN WHERE SAP_LIG = "+positionX+" AND SAP_COL = "+positionY+
+                                                            " AND SEC_ID = "+secteurActuel.getId()+";";
+        Cursor c = db.rawQuery(reqSelectID, null);
+        if (c.getCount() != 0)
+        {
+            c.moveToFirst();
+            return c.getInt(c.getColumnIndex("SAP_ID"));
+        }
+        return -1;
+    }
+
+
+
+
+
+
+
+
+
+
     
     private void set_spinner_value(Etat_sapin etatsapin_actuel)
     {
@@ -661,19 +755,19 @@ public class Ajout_sapin extends Activity {
 
     private void removeAllCoordForSecteur(int secteurID)
     {
-    	String requette = "DELETE FROM SEC_COORD WHERE SEC_ID="+secteurID;
+    	String requete = "DELETE FROM SEC_COORD WHERE SEC_ID="+secteurID;
     	
     	SQLiteDatabase db = Sapinoscope.getDataBaseHelper().getWritableDatabase();
-    	db.execSQL(requette);
+    	db.execSQL(requete);
     }
     
     private void insertPointSecteur(Point2D p, int secteurID)
     {
-    	String requette = "SELECT COORD_ID FROM COORDONNEE WHERE COORD_LAT="+p.x()+" AND COORD_LON="+p.y();
+    	String requete = "SELECT COORD_ID FROM COORDONNEE WHERE COORD_LAT="+p.x()+" AND COORD_LON="+p.y();
     	
     	SQLiteDatabase db = Sapinoscope.getDataBaseHelper().getWritableDatabase();
     	
-    	Cursor c = db.rawQuery(requette, null);
+    	Cursor c = db.rawQuery(requete, null);
     	
     	if(c.getCount()==0)
     	{
@@ -688,10 +782,10 @@ public class Ajout_sapin extends Activity {
     	
     	int coordID = c.getInt(0);
     	
-    	requette = "INSERT INTO SAPIN (	'SEC_ID',			'COORD_ID')"
+    	requete = "INSERT INTO SAPIN (	'SEC_ID',			'COORD_ID')"
 			   				+"VALUES(	'"+secteurID +"',	'"+coordID+"')";
     	
-    	db.execSQL(requette);
+    	db.execSQL(requete);
     }
     
     private void setPositionsSecteur()
@@ -761,7 +855,7 @@ public class Ajout_sapin extends Activity {
 		}
 	}
     
-    // Renvoi true si le sapin evolution pourrait etre la source apres quelque temps, utilise toutes les infos disponible, sauf l'id 
+    // Renvoie true si le sapin evolution pourrait etre la source apres quelques temps, utilise toutes les infos disponibles, sauf l'id
     private boolean estUneEvolutionProbable(Etat_sapin source, Etat_sapin evolution)
     {
     	if(!source.variete.equals(evolution.variete))
@@ -778,7 +872,7 @@ public class Ajout_sapin extends Activity {
     			if(msEntreDeuxMesures < 0)// evolution doit etre postérieure à la source
     				return false;
     			
-    			double jourEntreDeuxMesures = msEntreDeuxMesures/86400000.0f;// 86400000.0f = nb de ms dans une journ�e
+    			double jourEntreDeuxMesures = msEntreDeuxMesures/86400000.0f;// 86400000.0f = nb de ms dans une journee
     			
     			double elevationEntreDeuxMesures = evolution.infoSapin.taille - source.infoSapin.taille;
     			

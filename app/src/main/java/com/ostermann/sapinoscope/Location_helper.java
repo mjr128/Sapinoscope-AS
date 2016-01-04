@@ -48,7 +48,7 @@ public class Location_helper {
 				if ( isBetterLocation(location, currentBestLocation) )
 				{
 					currentBestLocation = location;
-					Log.i("Location", "Nouveau point trouve et valide!");
+					Log.i("Location", "Nouveau point trouve et valide !");
 				}
 			}
 
