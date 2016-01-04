@@ -1,4 +1,4 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -16,7 +16,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import java.lang.Object;
 
-import com.ostermann.sapinoscope.Object_sapin.Status_sapin;
+import com.LP50.sapinoscope.Object_sapin.Status_sapin;
 
 public class Object_infoSapin {
 	private int inf_sap_id;
@@ -70,7 +70,7 @@ public class Object_infoSapin {
 		}
 	}
 
-	public Object_infoSapin(Cursor c) 
+	public Object_infoSapin(Cursor c)
 	{
 		inf_sap_id = c.getInt(c.getColumnIndex("INF_SAP_ID"));
 		date = new Date(c.getLong(c.getColumnIndex("INF_SAP_DATE")));
@@ -78,10 +78,15 @@ public class Object_infoSapin {
 		taille = c.getFloat(c.getColumnIndex("INF_SAP_TAIL"));
 		status = Status_sapin.fromInt(c.getInt(c.getColumnIndex("INF_SAP_STATUS")));
 
-        //regarder si je récupere un truc !
-        //a finir
+
         if (c.getColumnIndex("INF_SAP_PHOTO") != -1)
-            photo = BitmapFactory.decodeByteArray(c.getBlob(c.getColumnIndex("INF_SAP_PHOTO")), 0, c.getBlob(c.getColumnIndex("INF_SAP_PHOTO")).length);
+		{
+			byte[] img = c.getBlob(c.getColumnIndex("INF_SAP_PHOTO"));
+			if( img != null )
+				photo = BitmapFactory.decodeByteArray(img, 0, img.length);
+			else
+				photo = null;
+		}
     }
 
     public static byte[] getBytesFromBitmap(Bitmap bitmap) {

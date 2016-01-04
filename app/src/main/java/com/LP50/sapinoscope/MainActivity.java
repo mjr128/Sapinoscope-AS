@@ -1,24 +1,13 @@
-package com.ostermann.sapinoscope;
-
-import java.io.IOException;
+package com.LP50.sapinoscope;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends Activity 
 {
@@ -30,10 +19,10 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		Log.i("Activity", "lancement du menu principal");
 
-		setContentView(R.layout.activity_main);
+		setContentView(com.LP50.sapinoscope.R.layout.activity_main);
 
 		// Bouton capture de sapin
-		Button captureButton = (Button) findViewById(R.id.button_capture);
+		Button captureButton = (Button) findViewById(com.LP50.sapinoscope.R.id.button_capture);
 		captureButton.setOnClickListener(new OnClickListener() 
 		{
 			public void onClick(View v) 
@@ -46,7 +35,7 @@ public class MainActivity extends Activity
 
 		
 		// Bouton modifier varietes
-			Button verietesBoutton = (Button) findViewById(R.id.button_varietes);
+			Button verietesBoutton = (Button) findViewById(com.LP50.sapinoscope.R.id.button_varietes);
 			verietesBoutton.setOnClickListener(new OnClickListener() 
 			{
 				public void onClick(View v) 

@@ -1,4 +1,4 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 
 import android.app.Activity;
 import android.content.Context;

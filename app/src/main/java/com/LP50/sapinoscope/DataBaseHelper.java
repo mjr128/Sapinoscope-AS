@@ -1,4 +1,4 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

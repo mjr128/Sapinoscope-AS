@@ -1,7 +1,5 @@
-package com.ostermann.sapinoscope;
-import java.text.SimpleDateFormat;
+package com.LP50.sapinoscope;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
 
@@ -9,13 +7,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -26,7 +22,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
@@ -47,14 +42,14 @@ public class Varietes_Listview extends Activity {
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_varietes_listview);
-		liste_variete = (ListView) findViewById(R.id.listview_varietes);
+		setContentView(com.LP50.sapinoscope.R.layout.activity_varietes_listview);
+		liste_variete = (ListView) findViewById(com.LP50.sapinoscope.R.id.listview_varietes);
 		Log.i(log_name_activity, "----NOUVELLE ACTIVITE----");
 		registerForContextMenu(liste_variete);	//CA PLANTE ICI BORDEL DE MERDE ...
 		
 		//On cree l'edittext et le spinner
-		edittext_nom_var = (EditText) findViewById(R.id.txt_variete_nom);
-		spin_var_pousse = (Spinner) findViewById(R.id.spinner_pousse);
+		edittext_nom_var = (EditText) findViewById(com.LP50.sapinoscope.R.id.txt_variete_nom);
+		spin_var_pousse = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spinner_pousse);
 		
 		//Initialisation
 		init_spinner_coeff_pousse();
@@ -66,7 +61,7 @@ public class Varietes_Listview extends Activity {
 
 
 		// Bouton modif infos variete
-		Button btn_modif_infos = (Button) findViewById(R.id.button_modif_variete);
+		Button btn_modif_infos = (Button) findViewById(com.LP50.sapinoscope.R.id.button_modif_variete);
 		btn_modif_infos.setEnabled(false);
 		btn_modif_infos.setOnClickListener(new OnClickListener() 
 		{
@@ -80,8 +75,8 @@ public class Varietes_Listview extends Activity {
 				UpdateVariete(nouv_nom, nouv_coeff, id_variete_selectionnee);
 				
 				//On reactive le bouton ajout et on grise celui de modification
-				Button btn_modif_infos = (Button) findViewById(R.id.button_modif_variete);
-				Button btn_ajouter_variete = (Button) findViewById(R.id.btn_variete_nouveau);
+				Button btn_modif_infos = (Button) findViewById(com.LP50.sapinoscope.R.id.button_modif_variete);
+				Button btn_ajouter_variete = (Button) findViewById(com.LP50.sapinoscope.R.id.btn_variete_nouveau);
 				btn_modif_infos.setEnabled(false);
 				btn_ajouter_variete.setEnabled(true);
 				
@@ -93,7 +88,7 @@ public class Varietes_Listview extends Activity {
 		
 		
 		// Bouton ajouter variete
-		Button btn_ajouter_variete = (Button) findViewById(R.id.btn_variete_nouveau);
+		Button btn_ajouter_variete = (Button) findViewById(com.LP50.sapinoscope.R.id.btn_variete_nouveau);
 		btn_ajouter_variete.setOnClickListener(new OnClickListener() 
 		{
 			public void onClick(View v) 
@@ -182,7 +177,7 @@ public class Varietes_Listview extends Activity {
 	//**************************************************************************//
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) 
 	{
-		 if (v.getId() == R.id.listview_varietes) 
+		 if (v.getId() == com.LP50.sapinoscope.R.id.listview_varietes)
 	     {
 	    	    AdapterView.AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) menuInfo;
 	    	    item_listview_selected = acmi.position;
@@ -195,7 +190,7 @@ public class Varietes_Listview extends Activity {
 	private void varietes_listview(ListView liste_variete) 
 	{
 		tab_variete =  Object_variete.createListOfAllVariete();
-		ArrayAdapter<Object_variete> adapter = new ArrayAdapter<Object_variete>(this,R.layout.parcelle_texte,tab_variete); 
+		ArrayAdapter<Object_variete> adapter = new ArrayAdapter<Object_variete>(this, com.LP50.sapinoscope.R.layout.parcelle_texte,tab_variete);
 		liste_variete.setAdapter(adapter);
 	}
 	
@@ -283,8 +278,8 @@ public class Varietes_Listview extends Activity {
 				Select_spinner_pousse(tab_variete.get(position).getVar_coef());
 
 				//On desactive certain boutons
-				Button btn_modif_infos = (Button) findViewById(R.id.button_modif_variete);
-				Button btn_ajouter_variete = (Button) findViewById(R.id.btn_variete_nouveau);
+				Button btn_modif_infos = (Button) findViewById(com.LP50.sapinoscope.R.id.button_modif_variete);
+				Button btn_ajouter_variete = (Button) findViewById(com.LP50.sapinoscope.R.id.btn_variete_nouveau);
 				btn_modif_infos.setEnabled(true);
 				btn_ajouter_variete.setEnabled(false);
 			}

@@ -1,4 +1,4 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 
 import java.util.Random;
 import java.util.Vector;
@@ -25,7 +25,7 @@ public class Graham_graphe extends Activity implements SurfaceHolder.Callback {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_ajout_sapin);
+		setContentView(com.LP50.sapinoscope.R.layout.activity_ajout_sapin3);
 		
 		positionX = 0;
 		positionY = 0;
@@ -34,7 +34,7 @@ public class Graham_graphe extends Activity implements SurfaceHolder.Callback {
 		
 		Sapinoscope.getLocationHelper().startRecherche();
 		
-		SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
+		SurfaceView surfaceView = (SurfaceView) findViewById(com.LP50.sapinoscope.R.id.surfaceView1);
 		surfaceView.getHolder().addCallback(this);
 		
 	}
@@ -43,7 +43,7 @@ public class Graham_graphe extends Activity implements SurfaceHolder.Callback {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.settings_menu, menu);
+		getMenuInflater().inflate(com.LP50.sapinoscope.R.menu.settings_menu, menu);
 		return true;
 	}
 
@@ -53,7 +53,7 @@ public class Graham_graphe extends Activity implements SurfaceHolder.Callback {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == com.LP50.sapinoscope.R.id.action_settings) {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

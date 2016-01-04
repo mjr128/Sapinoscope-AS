@@ -1,25 +1,20 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -37,11 +32,11 @@ public class Choix_depart_sapin extends Activity {
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_choix_depart_sapin);
+		setContentView(com.LP50.sapinoscope.R.layout.activity_choix_depart_sapin);
 		Log.i(log_name_activity+"/onCreate", "----NOUVELLE ACTIVITE----");
 
-		spin_colonneY = (Spinner) findViewById(R.id.spin_choixSapin_colonneY);
-		spin_ligneX = (Spinner)   findViewById(R.id.spin_choixSapin_ligne);
+		spin_colonneY = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spin_choixSapin_colonneY);
+		spin_ligneX = (Spinner)   findViewById(com.LP50.sapinoscope.R.id.spin_choixSapin_ligne);
 		
 		// Reception INTENT
 		Intent intent_depart = getIntent();
@@ -79,18 +74,27 @@ public class Choix_depart_sapin extends Activity {
 		
 		
 		// Validation du choix
-		Button button_ok = (Button) findViewById(R.id.bt_choixSapin_ok);
+		Button button_ok = (Button) findViewById(com.LP50.sapinoscope.R.id.bt_choixSapin_ok);
 		button_ok.setOnClickListener(new OnClickListener() {
 			
+			@SuppressLint("LongLogTag")
 			public void onClick(View v) {
 				Intent intent = new Intent(contexte, Ajout_sapin.class);
-				intent.putExtra("sect_id", secteur.getId());
-				intent.putExtra("x", sapin.getLigne());
-				intent.putExtra("y", sapin.getColonne());
-				intent.putExtra("new_secteur", 0); // 0 : secteur existant
-				Log.i("ChoixDepartSapin/buttonOK","INTENT SEND SEC_ID:"+secteur.getId()+
-						" x:"+(sapin.getLigne())+
-						" y:"+(sapin.getColonne()));
+				if(sapin == null) {
+					intent.putExtra("sect_id", secteur.getId());
+					intent.putExtra("x", 0);
+					intent.putExtra("y", 0);
+					intent.putExtra("new_secteur", 0); // 0 : secteur existant
+				}else {
+					intent.putExtra("sect_id", secteur.getId());
+					intent.putExtra("x", sapin.getLigne());
+					intent.putExtra("y", sapin.getColonne());
+					intent.putExtra("new_secteur", 0); // 0 : secteur existant
+					Log.i("ChoixDepartSapin/buttonOK", "INTENT SEND SEC_ID:" + secteur.getId() +
+							" x:" + (sapin.getLigne()) +
+							" y:" + (sapin.getColonne()));
+				}
+
 				startActivity(intent);
 				finish();
 				
@@ -132,7 +136,7 @@ public class Choix_depart_sapin extends Activity {
 	{
 		L_sapinD = Object_sapinDetails.createListOfSapin_Y(secteur.getId(), y, 0);
 		
-		ArrayAdapter<Object_sapinDetails> adapterX = new ArrayAdapter<Object_sapinDetails>(this,R.layout.parcelle_texte,L_sapinD); 
+		ArrayAdapter<Object_sapinDetails> adapterX = new ArrayAdapter<Object_sapinDetails>(this, com.LP50.sapinoscope.R.layout.parcelle_texte,L_sapinD);
 		spin_ligneX.setAdapter(adapterX);
 		spin_ligneX.setSelection((L_sapinD.size()-1));
 		Log.i(log_name_activity+"/initialisation", "init_spinner_colonneX OK");

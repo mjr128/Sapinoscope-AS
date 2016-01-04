@@ -1,4 +1,4 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,13 +34,13 @@ public class Parcelle_modification extends Activity {
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_parcelle_modification);
+		setContentView(com.LP50.sapinoscope.R.layout.activity_parcelle_modification);
 		Log.i(log_name_activity, "NOUVELLE ACTIVITE START");
 		
-		txt_parcelle = (TextView) findViewById(R.id.txt_parcelle_modif_title);
-		spin_parc_coef = (Spinner) findViewById(R.id.spin_parcelle_modif);
-		ed_parc_desc = (EditText) findViewById(R.id.editText_parcelle_modif_desc);
-		ed_parc_name = (EditText) findViewById(R.id.editText_parcelle_modif_nom);
+		txt_parcelle = (TextView) findViewById(com.LP50.sapinoscope.R.id.txt_parcelle_modif_title);
+		spin_parc_coef = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spin_parcelle_modif);
+		ed_parc_desc = (EditText) findViewById(com.LP50.sapinoscope.R.id.editText_parcelle_modif_desc);
+		ed_parc_name = (EditText) findViewById(com.LP50.sapinoscope.R.id.editText_parcelle_modif_nom);
 
 		
 		// Reception INTENT
@@ -67,7 +66,7 @@ public class Parcelle_modification extends Activity {
 		initialisation();
 		
 		// INSERT UPDATE PARCELLE -- ON CLIC
-		Button bt_add_parcelle = (Button) findViewById(R.id.bt_parcelle_modif_add);
+		Button bt_add_parcelle = (Button) findViewById(com.LP50.sapinoscope.R.id.bt_parcelle_modif_add);
 		bt_add_parcelle.setOnClickListener(new OnClickListener() 
 		{
 			

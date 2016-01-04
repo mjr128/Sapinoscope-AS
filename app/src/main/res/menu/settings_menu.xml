@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.ostermann.sapinoscope.Ajout_sapin" >
+    tools:context="com.LP50.sapinoscope.Ajout_sapin" >
 
     <item
         android:id="@+id/action_settings"

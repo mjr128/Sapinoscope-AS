@@ -1,4 +1,4 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,15 +46,15 @@ public class Secteur_modification extends Activity
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_secteur_modification);
+		setContentView(com.LP50.sapinoscope.R.layout.activity_secteur_modification);
 		Log.i(log_name_activity, "----NOUVELLE ACTIVITE START----");
 
-		txt_sect = (TextView) findViewById(R.id.txt_secteur_modif_title);
-		ed_sect_desc = (EditText) findViewById(R.id.editText_secteur_modif_nom);
-		spin_sect_crois = (Spinner) findViewById(R.id.spinner_coef_croissance);
-		spin_sect_gel = (Spinner) findViewById(R.id.spinner_coef_gel);
-		spin_sect_annee = (Spinner) findViewById(R.id.spinner_annee);
-		zigzag = (CheckBox) findViewById(R.id.chek_secteur_modification_zigzag);
+		txt_sect = (TextView) findViewById(com.LP50.sapinoscope.R.id.txt_secteur_modif_title);
+		ed_sect_desc = (EditText) findViewById(com.LP50.sapinoscope.R.id.editText_secteur_modif_nom);
+		spin_sect_crois = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spinner_coef_croissance);
+		spin_sect_gel = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spinner_coef_gel);
+		spin_sect_annee = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spinner_annee);
+		zigzag = (CheckBox) findViewById(com.LP50.sapinoscope.R.id.chek_secteur_modification_zigzag);
 		
 		// Reception INTENT
 		Intent intent_sect_modif = getIntent();
@@ -105,7 +104,7 @@ public class Secteur_modification extends Activity
 		//---------------------------------------------------------
 		// INSERT UPDATE PARCELLE -- ON CLIC     (Bouton "VALIDER")
 		//---------------------------------------------------------
-		Button bt_add_secteur = (Button) findViewById(R.id.bt_secteur_modif_add);
+		Button bt_add_secteur = (Button) findViewById(com.LP50.sapinoscope.R.id.bt_secteur_modif_add);
 		bt_add_secteur.setOnClickListener(new OnClickListener() 
 		{
 			

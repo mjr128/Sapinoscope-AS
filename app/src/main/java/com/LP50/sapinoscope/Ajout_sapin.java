@@ -1,17 +1,12 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-// coucou
-import com.ostermann.sapinoscope.Object_sapin.Status_sapin;
+import com.LP50.sapinoscope.Object_sapin.Status_sapin;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,30 +18,21 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
-import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
-import android.view.SurfaceHolder.Callback;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewTreeObserver.OnDrawListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Ajout_sapin extends Activity {
 
@@ -67,11 +53,10 @@ public class Ajout_sapin extends Activity {
 	private Spinner varieteSpinner ;
 	private Spinner tailleSpinner ;
 	private Spinner nbIdentiqueSpinner ;
-    private Button newPhotoBtn;
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    private ImageView imageView;
+    private ImageButton imageBtn;
     private Bitmap imageBitmap;
 	
 	
@@ -82,12 +67,12 @@ public class Ajout_sapin extends Activity {
 		
 		Log.i("ajoutSapinAct","Initialisation de l'ajout de sapin...");
 		
-		 textViewParcelle = (TextView) findViewById(R.id.txt_addsap_parcelle_titre);
-		 textViewSecteur = (TextView) findViewById(R.id.txt_addsap_secteur_titre);
-		 varieteSpinner = (Spinner) findViewById(R.id.spin_addsap_variete);
-		 tailleSpinner = (Spinner) findViewById(R.id.spin_addsap_taille);
-		 nbIdentiqueSpinner = (Spinner) findViewById(R.id.spin_addsap_sap_identique);
-         imageView = (ImageView) findViewById(R.id.mImageView);
+		 textViewParcelle = (TextView) findViewById(com.LP50.sapinoscope.R.id.txt_addsap_parcelle_titre);
+		 textViewSecteur = (TextView) findViewById(com.LP50.sapinoscope.R.id.txt_addsap_secteur_titre);
+		 varieteSpinner = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spin_addsap_variete);
+		 tailleSpinner = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spin_addsap_taille);
+		 nbIdentiqueSpinner = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spin_addsap_sap_identique);
+		 imageBtn = (ImageButton) findViewById(com.LP50.sapinoscope.R.id.imageButton);
 		
 		Intent intentAjoutSapin = getIntent();
 		int secteurID  = intentAjoutSapin.getIntExtra("sect_id", -1);
@@ -114,7 +99,7 @@ public class Ajout_sapin extends Activity {
 			
 			int xMoins1 = getPreviousStepX( xDepart, 	yDepart, secteurActuel.getZigzag() );
 			int xMoins2 = getPreviousStepX( xMoins1, 	yDepart, secteurActuel.getZigzag() );
-			int xPlus1 =  getNextStepX(		xDepart, 	yDepart, secteurActuel.getZigzag() );
+			int xPlus1 =  getNextStepX(xDepart, yDepart, secteurActuel.getZigzag());
 			int xPlus2 =  getNextStepX( 	xPlus1, 	yDepart, secteurActuel.getZigzag() );
 			
 			Vector<Etat_sapin> etatSapinMoins2 = Etat_sapin.createListOfInfoSapinFromXY(secteurID, xMoins2, yDepart);
@@ -122,11 +107,14 @@ public class Ajout_sapin extends Activity {
 			Vector<Etat_sapin> etatSapinDepart = Etat_sapin.createListOfInfoSapinFromXY(secteurID, xDepart, yDepart);
 			Vector<Etat_sapin> etatSapinPlus1 = Etat_sapin.createListOfInfoSapinFromXY(secteurID, xPlus1, yDepart);
 			Vector<Etat_sapin> etatSapinPlus2 = Etat_sapin.createListOfInfoSapinFromXY(secteurID, xPlus2, yDepart);
-			etatsapin_actuel = etatSapinDepart.get(0);
-			
+			if( etatSapinDepart != null )
+				etatsapin_actuel = etatSapinDepart.get(0);
+			else
+				etatsapin_actuel = null;
+
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			// Add the buttons
-			builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			builder.setPositiveButton(com.LP50.sapinoscope.R.string.ok, new DialogInterface.OnClickListener() {
 			           public void onClick(DialogInterface dialog, int id) {
 			               // User clicked OK button
 			           }
@@ -191,7 +179,7 @@ public class Ajout_sapin extends Activity {
 		Sapinoscope.getLocationHelper().startRecherche();
 		
 		//Listener de spinner
-		Spinner varieteSpin 	= (Spinner) findViewById(R.id.spin_addsap_variete);
+		Spinner varieteSpin 	= (Spinner) findViewById(com.LP50.sapinoscope.R.id.spin_addsap_variete);
 		varieteSpin.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -204,7 +192,7 @@ public class Ajout_sapin extends Activity {
 			}
 		});
 		
-		Spinner tailleSpin = (Spinner) findViewById(R.id.spin_addsap_taille);
+		Spinner tailleSpin = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spin_addsap_taille);
 		tailleSpin.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -217,12 +205,12 @@ public class Ajout_sapin extends Activity {
 			}
 		});
 		
-		Spinner nbItentiqueSpin = (Spinner) findViewById(R.id.spin_addsap_sap_identique);
+		Spinner nbItentiqueSpin = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spin_addsap_sap_identique);
 		nbItentiqueSpin.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
-			public void onItemSelected(AdapterView<?> adapter, View view,int position, long id) {
-				nbIdentiqueActuel = Integer.parseInt((String)adapter.getItemAtPosition(position));
+			public void onItemSelected(AdapterView<?> adapter, View view, int position, long id) {
+				nbIdentiqueActuel = Integer.parseInt((String) adapter.getItemAtPosition(position));
 			}
 
 			@Override
@@ -231,7 +219,7 @@ public class Ajout_sapin extends Activity {
 		});
 		
 		//Listener de bouton
-		Button addSapinBtn = (Button) findViewById(R.id.bt_addsap_sapin_existant);
+		Button addSapinBtn = (Button) findViewById(com.LP50.sapinoscope.R.id.bt_addsap_sapin_existant);
 		addSapinBtn.setOnClickListener(new OnClickListener() 
 		{
 
@@ -242,7 +230,7 @@ public class Ajout_sapin extends Activity {
 			}
 		});
 		
-		Button newLineBtn = (Button) findViewById(R.id.bt_addsap_nouvelle_ligne);
+		Button newLineBtn = (Button) findViewById(com.LP50.sapinoscope.R.id.bt_addsap_nouvelle_ligne);
 		newLineBtn.setOnClickListener(new OnClickListener() 
 		{
 			@Override
@@ -251,7 +239,7 @@ public class Ajout_sapin extends Activity {
 			}
 		});
 		
-		Button newSapinBtn = (Button) findViewById(R.id.bt_addsap_nouveau_sapin);
+		Button newSapinBtn = (Button) findViewById(com.LP50.sapinoscope.R.id.bt_addsap_nouveau_sapin);
 		newSapinBtn.setOnClickListener(new OnClickListener() 
 		{
 			public void onClick(View v) {
@@ -260,7 +248,7 @@ public class Ajout_sapin extends Activity {
 			}
 		});
 		
-		Button newSoucheBtn = (Button) findViewById(R.id.bt_addsap_souche);
+		Button newSoucheBtn = (Button) findViewById(com.LP50.sapinoscope.R.id.bt_addsap_souche);
 		newSoucheBtn.setOnClickListener(new OnClickListener() 
 		{
 			public void onClick(View v) {
@@ -269,8 +257,8 @@ public class Ajout_sapin extends Activity {
 			}
 		});
 
-        newPhotoBtn = (Button) findViewById(R.id.btnPhoto);
-        newPhotoBtn.setOnClickListener(new OnClickListener()
+
+		imageBtn.setOnClickListener(new OnClickListener()
         {
             public void onClick(View v) {
                 dispatchTakePictureIntent();
@@ -286,8 +274,7 @@ public class Ajout_sapin extends Activity {
             imageBitmap = (Bitmap) extras.get("data");
 
             //imageView = (ImageView) findViewById(R.id.mImageView);
-            imageView.setImageBitmap(imageBitmap);
-            imageView.setVisibility(View.VISIBLE);
+			imageBtn.setImageBitmap(imageBitmap);
         }
     }
 
@@ -311,13 +298,21 @@ public class Ajout_sapin extends Activity {
 	{
 		super.onStop();
 		Sapinoscope.getLocationHelper().stopRecherche();
-		setPositionsSecteur();
+		//setPositionsSecteur();
 	}
 	
 	protected void onResume()
 	{
 		super.onResume();
-		fillGui(); // On remet a jour l'interface graphique car cette fonction va etre appellé apres la modification de la liste des variétes
+
+		// On remet a jour la liste des variete disponible car cette methode est appelle
+		// apres la modification des varietes
+		int currentSelection = varieteSpinner.getSelectedItemPosition();
+		Vector<Object_variete> varietes = Object_variete.createListOfAllVariete();
+		ArrayAdapter<Object_variete> adapterVariete = new ArrayAdapter<Object_variete>(this, com.LP50.sapinoscope.R.layout.secteur_texte,varietes);
+		varieteSpinner.setAdapter(adapterVariete);
+		varieteSpinner.setSelection(currentSelection);
+
 		Sapinoscope.getLocationHelper().startRecherche();
 	}
 	
@@ -331,13 +326,13 @@ public class Ajout_sapin extends Activity {
 	{
 		super.onDestroy();
 		Sapinoscope.getLocationHelper().stopRecherche();
-		setPositionsSecteur();
+		//setPositionsSecteur();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.settings_menu, menu);
+		getMenuInflater().inflate(com.LP50.sapinoscope.R.menu.settings_menu, menu);
 		return true;
 	}
 
@@ -347,7 +342,7 @@ public class Ajout_sapin extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == com.LP50.sapinoscope.R.id.action_settings) {
 			Intent intent = new Intent(this, Varietes_Listview.class);
 			startActivity(intent);
 			return true;
@@ -582,15 +577,13 @@ public class Ajout_sapin extends Activity {
 	    	infoSapin.saveInDb();
     	}
     	nbSapinLigne += nbIdentique;
-    	Spinner nbIdentiqueSpinner = (Spinner) findViewById(R.id.spin_addsap_sap_identique);
+    	Spinner nbIdentiqueSpinner = (Spinner) findViewById(com.LP50.sapinoscope.R.id.spin_addsap_sap_identique);
     	nbIdentiqueSpinner.setSelection(0);
 
-        if (imageView != null)
-        {
-            imageView.setImageResource(0);
-            imageView.setImageDrawable(null);
-            imageView.setVisibility(View.INVISIBLE);
-        }
+
+		//imageBtn.setImageResource(0);
+		//imageBtn.setImageDrawable(null);
+		imageBtn.setImageBitmap(null);
     }
     
     // Donne quel serait le point suivant a entrer : 
@@ -626,7 +619,7 @@ public class Ajout_sapin extends Activity {
     private void goToNextPositionY()
     {
         nbSapinLigne=0;
-    	setAndShowActuelPositionY(positionY+1);
+    	setAndShowActuelPositionY(positionY + 1);
     	if(zigZag)
     	{
     		if( positionY%2 == 0)
@@ -649,27 +642,27 @@ public class Ajout_sapin extends Activity {
         // Affiche 0 lors d une nouvelle ligne
         setTextView_NbSapin_ligne(nbSapinLigne);
     	positionY = y;
-   	 	TextView txtView_getY = (TextView) findViewById(R.id.txt_addsapin_getY);
+   	 	TextView txtView_getY = (TextView) findViewById(com.LP50.sapinoscope.R.id.txt_addsapin_getY);
    	 	txtView_getY.setText("Ligne :" + (y + 1));
     }
 
     //ici je dois récupérer et afficher ma photo dans imageView
     private void fillGui()
     {
-    	textViewParcelle.setText("Parcelle : "+parcelleActuel.getName());
-    	textViewSecteur.setText("Secteur : "+secteurActuel.getName());
-    	
-    	Vector<Object_variete> varietes = Object_variete.createListOfAllVariete();
-		ArrayAdapter<Object_variete> adapterVariete = new ArrayAdapter<Object_variete>(this,R.layout.secteur_texte,varietes); 
-		varieteSpinner.setAdapter(adapterVariete);	
+    	textViewParcelle.setText("Parcelle : " + parcelleActuel.getName());
+    	textViewSecteur.setText("Secteur : " + secteurActuel.getName());
 		
-		String[] tailles = getResources().getStringArray(R.array.taille_predefini);
-		ArrayAdapter<String> adapterTaille = new ArrayAdapter<String>(this, R.layout.secteur_texte,tailles);
+		String[] tailles = getResources().getStringArray(com.LP50.sapinoscope.R.array.taille_predefini);
+		ArrayAdapter<String> adapterTaille = new ArrayAdapter<String>(this, com.LP50.sapinoscope.R.layout.secteur_texte,tailles);
 		tailleSpinner.setAdapter(adapterTaille);
 		
-		String[] nbIdentiques = getResources().getStringArray(R.array.nbIdentiques);
-		ArrayAdapter<String> nbIdentiquesAdapter = new ArrayAdapter<String>(this, R.layout.secteur_texte,nbIdentiques);
+		String[] nbIdentiques = getResources().getStringArray(com.LP50.sapinoscope.R.array.nbIdentiques);
+		ArrayAdapter<String> nbIdentiquesAdapter = new ArrayAdapter<String>(this, com.LP50.sapinoscope.R.layout.secteur_texte,nbIdentiques);
 		nbIdentiqueSpinner.setAdapter(nbIdentiquesAdapter);
+
+		Vector<Object_variete> varietes = Object_variete.createListOfAllVariete();
+		ArrayAdapter<Object_variete> adapterVariete = new ArrayAdapter<Object_variete>(this, com.LP50.sapinoscope.R.layout.secteur_texte,varietes);
+		varieteSpinner.setAdapter(adapterVariete);
 
         int idSapin = returnIdInfoSapin();
         if (idSapin != -1)
@@ -677,17 +670,15 @@ public class Ajout_sapin extends Activity {
             try
             {
                 Bitmap bmp = Object_infoSapin.getLastInfoSapin(idSapin).photo;
-                imageView.setImageBitmap(bmp);
+				imageBtn.setImageBitmap(bmp);
             }
             catch(Exception ex)
-            {}
+            {
+				Log.w("Ajout sapin", "Sapin sans photo !");
+			}
 
         }
     }
-
-
-
-
 
     // return l'id de l'infosapin
     private int returnIdInfoSapin()
@@ -705,16 +696,6 @@ public class Ajout_sapin extends Activity {
         return -1;
     }
 
-
-
-
-
-
-
-
-
-
-    
     private void set_spinner_value(Etat_sapin etatsapin_actuel)
     {
 		if(etatsapin_actuel != null)
@@ -816,44 +797,10 @@ public class Ajout_sapin extends Activity {
 
     private void setTextView_NbSapin_ligne(int x)
     {
-   	 TextView txtView_getX = (TextView) findViewById(R.id.txt_addsapin_getX);
+   	 TextView txtView_getX = (TextView) findViewById(com.LP50.sapinoscope.R.id.txt_addsapin_getX);
    	 txtView_getX.setText("Sapin N° :"+x);
 
     }
-
-	private void drawSecteurSapin(Object_secteur secteur, Canvas c)
-	{
-		Vector<Object_sapin> allSapins = Object_sapin.createListOfSapin(secteur.getId());
-
-		float sectorAngle = secteur.getAngle(); // angle de 0 = vertical
-
-		for(Object_sapin sapin : allSapins)
-		{
-			Object_infoSapin infoSapin = Object_infoSapin.getLastInfoSapin(sapin.getSapId());
-
-			Drawable iconSapin;
-
-			switch (infoSapin.status)
-			{
-				case NOUVEAU:
-					iconSapin = getDrawable(R.drawable.emp_sap_ok);
-					break;
-				case OK:
-					iconSapin = getDrawable(R.drawable.emp_sap_ok);
-					break;
-				case TOC:
-					iconSapin = getDrawable(R.drawable.emp_sap_souche);
-					break;
-				case VIDE:
-					iconSapin = getDrawable(R.drawable.emp_sap_vide);
-					break;
-				case INDEFINI:
-				default:
-					iconSapin = getDrawable(R.drawable.emp_sap_error);
-					break;
-			}
-		}
-	}
     
     // Renvoie true si le sapin evolution pourrait etre la source apres quelques temps, utilise toutes les infos disponibles, sauf l'id
     private boolean estUneEvolutionProbable(Etat_sapin source, Etat_sapin evolution)

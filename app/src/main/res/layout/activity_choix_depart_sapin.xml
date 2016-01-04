@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.ostermann.sapinoscope.Choix_depart_sapin" >
+    tools:context="com.LP50.sapinoscope.Choix_depart_sapin" >
 
     <TextView
         android:id="@+id/textView3"

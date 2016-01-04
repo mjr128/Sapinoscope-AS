@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_horizontal_margin"
-    tools:context="com.ostermann.sapinoscope.Parcelle_listView" >
+    tools:context="com.LP50.sapinoscope.Parcelle_listView" >
 
     <ListView
         android:id="@+id/listView_parcelle"

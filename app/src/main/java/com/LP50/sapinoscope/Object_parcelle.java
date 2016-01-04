@@ -1,8 +1,8 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 
 import java.util.Vector;
 
-import com.ostermann.sapinoscope.Object_sapin.Status_sapin;
+import com.LP50.sapinoscope.Object_sapin.Status_sapin;
 
 import android.database.Cursor;
 import android.database.SQLException;

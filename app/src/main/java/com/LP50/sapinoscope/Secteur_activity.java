@@ -1,4 +1,4 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 
 import java.util.Vector;
 
@@ -38,8 +38,8 @@ public class Secteur_activity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_secteur);
-		liste_secteur = (ListView) findViewById(R.id.listView_secteur);
+		setContentView(com.LP50.sapinoscope.R.layout.activity_secteur);
+		liste_secteur = (ListView) findViewById(com.LP50.sapinoscope.R.id.listView_secteur);
 		Log.i(log_name_activity+"/onCreate", "----NOUVELLE ACTIVITE----");
 		
 		// Reception INTENT
@@ -57,7 +57,7 @@ public class Secteur_activity extends Activity {
 	
 
 		
-		TextView txt_parcelle = (TextView) findViewById(R.id.txt_secteur_select_parcelle_titre);
+		TextView txt_parcelle = (TextView) findViewById(com.LP50.sapinoscope.R.id.txt_secteur_select_parcelle_titre);
 		txt_parcelle.setText("Parcelle : "+parcelle_recep.getName());
 
 		// initialisation
@@ -66,13 +66,13 @@ public class Secteur_activity extends Activity {
 		secteur_ClickCallBack(liste_secteur);
 		
 		// bouton ajout secteur
-		Button add_secteur = (Button) findViewById(R.id.bt_add_secteur);
+		Button add_secteur = (Button) findViewById(com.LP50.sapinoscope.R.id.bt_add_secteur);
 		add_secteur.setOnClickListener(new OnClickListener() 
 		{
 			public void onClick(View v) 
 			{
 				Log.i(log_name_activity+"/onCreate/onClick", "clic boutton ajout secteur");
-				EditText edt_add_secteur = (EditText) findViewById(R.id.editText_add_secteur);
+				EditText edt_add_secteur = (EditText) findViewById(com.LP50.sapinoscope.R.id.editText_add_secteur);
 				String name_secteur = edt_add_secteur.getText().toString();
 				edt_add_secteur.setText(""); //vide le champ de saisie
 				Object_secteur secteur = new Object_secteur(1, parcelle_recep.getId(), name_secteur, 0, 1);
@@ -85,7 +85,7 @@ public class Secteur_activity extends Activity {
 	private void secteur_listview(ListView liste_secteur,int parcelle_id) 
 	{
 		tab_secteur =  Object_secteur.createListOfSecteur(parcelle_id);
-		ArrayAdapter<Object_secteur> adapter_secteur = new ArrayAdapter<Object_secteur>(this,R.layout.secteur_texte,tab_secteur); 
+		ArrayAdapter<Object_secteur> adapter_secteur = new ArrayAdapter<Object_secteur>(this, com.LP50.sapinoscope.R.layout.secteur_texte,tab_secteur);
 		liste_secteur.setAdapter(adapter_secteur);	
 	}
 
@@ -110,7 +110,7 @@ public class Secteur_activity extends Activity {
 	//**************************************************************************//
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) 
 	{
-		 if (v.getId() == R.id.listView_secteur) 
+		 if (v.getId() == com.LP50.sapinoscope.R.id.listView_secteur)
 	     {
 	    	    AdapterView.AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) menuInfo;
 	    	    item_listview_select = acmi.position;

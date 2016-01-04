@@ -1,4 +1,4 @@
-package com.ostermann.sapinoscope;
+package com.LP50.sapinoscope;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -35,8 +35,8 @@ public class Parcelle_listView extends Activity {
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_parcelle_listview);
-		liste_parcelle = (ListView) findViewById(R.id.listView_parcelle);
+		setContentView(com.LP50.sapinoscope.R.layout.activity_parcelle_listview);
+		liste_parcelle = (ListView) findViewById(com.LP50.sapinoscope.R.id.listView_parcelle);
 		Log.i(log_name_activity, "----NOUVELLE ACTIVITE----");
 		
 		registerForContextMenu(liste_parcelle);
@@ -45,12 +45,12 @@ public class Parcelle_listView extends Activity {
 		parcelle_ClickCallBack(liste_parcelle);
 		
 		// Bouton ajout parcelle
-		Button add_parcelle = (Button) findViewById(R.id.bt_add_parcelle);
+		Button add_parcelle = (Button) findViewById(com.LP50.sapinoscope.R.id.bt_add_parcelle);
 		add_parcelle.setOnClickListener(new OnClickListener() 
 		{
 			public void onClick(View v) 
 			{
-				EditText edt_add_parcelle = (EditText) findViewById(R.id.editText_add_parcelle);
+				EditText edt_add_parcelle = (EditText) findViewById(com.LP50.sapinoscope.R.id.editText_add_parcelle);
 				String name_parcelle = edt_add_parcelle.getText().toString();
 				edt_add_parcelle.setText(""); 
 				// AJOUT D UNE NOUVELLE PARCELLE
@@ -64,7 +64,7 @@ public class Parcelle_listView extends Activity {
 	private void parcelle_listview(ListView liste_parcelle) 
 	{
 		tab_parcelle =  Object_parcelle.createListOfAllParcelle();
-		ArrayAdapter<Object_parcelle> adapter = new ArrayAdapter<Object_parcelle>(this,R.layout.parcelle_texte,tab_parcelle); 
+		ArrayAdapter<Object_parcelle> adapter = new ArrayAdapter<Object_parcelle>(this, com.LP50.sapinoscope.R.layout.parcelle_texte,tab_parcelle);
 		liste_parcelle.setAdapter(adapter);
 	}
 
@@ -89,7 +89,7 @@ public class Parcelle_listView extends Activity {
 	//**************************************************************************//
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) 
 	{
-		 if (v.getId() == R.id.listView_parcelle) 
+		 if (v.getId() == com.LP50.sapinoscope.R.id.listView_parcelle)
 	     {
 	    	    AdapterView.AdapterContextMenuInfo acmi = (AdapterContextMenuInfo) menuInfo;
 	    	    item_listview_select = acmi.position;
