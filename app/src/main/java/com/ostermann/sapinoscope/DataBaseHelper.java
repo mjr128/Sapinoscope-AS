@@ -26,7 +26,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
       
     private static String DB_NAME = "Sapin_DB";
     
-    private static int DB_VERSION = 13;
+    private static int DB_VERSION = 14;
      
     private SQLiteDatabase myDataBase;
       
@@ -99,7 +99,6 @@ public class DataBaseHelper extends SQLiteOpenHelper
     + "SEC_ID BIGINT(4) NOT NULL  ,"
 	+ "SAP_LIG BIGINT(4) NOT NULL  ,"
 	+ "SAP_COL BIGINT(4) NOT NULL  ,"
-	+ "SAP_PHO LONGBLOB NULL  ,"
 	+ "COORD_ID INTEGER,"
 	+ "FOREIGN KEY (VAR_ID)"
 	+ "REFERENCES VARIETE (VAR_ID) ,"
@@ -115,6 +114,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
 	+ "INF_SAP_DATE DATETIME NOT NULL  ,"
 	+ "INF_SAP_TAIL DECIMAL(10,2) NOT NULL  ," 
 	+ "INF_SAP_STATUS BIGINT(1) NOT NULL  ,"
+    + "INF_SAP_PHOTO LONGBLOB NULL  ,"
 	+ "FOREIGN KEY (SAP_ID)"
 	+ "REFERENCES SAPIN (SAP_ID)) ;";
 	

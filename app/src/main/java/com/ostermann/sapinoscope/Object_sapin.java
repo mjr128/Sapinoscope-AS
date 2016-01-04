@@ -52,7 +52,6 @@ public class Object_sapin {
 	public int sec_id;
 	public int xLigne;
 	public int yColonne;
-	public Bitmap photo;
 	//public Status_sapin status;
 	public int coord_id;
 	public Point2D coordonne;

@@ -75,6 +75,7 @@
         <Spinner
             android:id="@+id/spin_addsap_variete"
             android:layout_marginTop="14dp" />
+
     </TableRow>
 
     <Space
@@ -93,11 +94,18 @@
             android:text="Nb Identiques" />
 
         <Spinner android:id="@+id/spin_addsap_sap_identique" />
+
     </TableRow>
 
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="15dp" />
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="15dp" />
+
+    </TableRow>
 
     <TableRow
         android:id="@+id/tableRow3"
@@ -109,7 +117,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_marginTop="20dp"
             android:minHeight="90dp"
-            android:text="Sapin Existant"
+            android:text="Existant"
             android:textSize="20sp" />
 
         <Button
@@ -118,6 +126,17 @@
             android:layout_gravity="center"
             android:minHeight="50dp"
             android:text="Nouveau plant" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:id="@+id/btnPhoto"
+            android:layout_marginTop="20dp"
+            android:minHeight="90dp"
+            android:text="photo"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="7" />
 
     </TableRow>
 
@@ -147,5 +166,11 @@
             android:text="Nouvelle Ligne" />
 
     </TableRow>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mImageView"
+        android:layout_column="7" />
 
 </TableLayout>
