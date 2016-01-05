@@ -124,7 +124,7 @@ public class Ajout_sapin extends Activity {
 			if(etatSapinDepart != null && etatSapinMoins1 != null && etatSapinPlus1 != null)
 			{
 				infoAffiche = new CharSequence[3];
-				infoAffiche[0] = "Precedant : "+(etatSapinMoins1.get(0).toString() + "\n"
+				infoAffiche[0] = "Precedent : "+(etatSapinMoins1.get(0).toString() + "\n"
 						+new SimpleDateFormat("MM/yyyy").format(etatSapinMoins1.get(0).infoSapin.date));
 				infoAffiche[1] = "Depart : "+(etatSapinDepart.get(0).toString() + "\n"
 						+new SimpleDateFormat("MM/yyyy").format(etatSapinDepart.get(0).infoSapin.date));
@@ -134,9 +134,9 @@ public class Ajout_sapin extends Activity {
 			else if(etatSapinPlus1 == null && etatSapinMoins1 != null && etatSapinMoins2 != null )
 			{
 				infoAffiche = new CharSequence[3];
-				infoAffiche[0] = "Precedant 2: "+(etatSapinMoins2.get(0).toString() + "\n"
+				infoAffiche[0] = "Precedent 2: "+(etatSapinMoins2.get(0).toString() + "\n"
 						+etatSapinMoins2.get(0).infoSapin.getFormatedDate("MM/yyyy"));
-				infoAffiche[1] = "Precedant 1: "+(etatSapinMoins1.get(0).toString() + "\n"
+				infoAffiche[1] = "Precedent 1: "+(etatSapinMoins1.get(0).toString() + "\n"
 						+etatSapinMoins1.get(0).infoSapin.getFormatedDate("MM/yyyy"));
 				infoAffiche[2] = "Depart: "+(etatSapinDepart.get(0).toString() + "\n"
 						+etatSapinDepart.get(0).infoSapin.getFormatedDate("MM/yyyy"));
