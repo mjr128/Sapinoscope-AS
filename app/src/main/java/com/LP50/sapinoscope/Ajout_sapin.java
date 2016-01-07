@@ -763,7 +763,7 @@ public class Ajout_sapin extends Activity {
     	
     	int coordID = c.getInt(0);
     	
-    	requete = "INSERT INTO SAPIN (	'SEC_ID',			'COORD_ID')"
+    	requete = "INSERT INTO SEC_COORD (	'SEC_ID',			'COORD_ID')"
 			   				+"VALUES(	'"+secteurID +"',	'"+coordID+"')";
     	
     	db.execSQL(requete);
